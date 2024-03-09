@@ -1,0 +1,13 @@
+.container {
+    width: 100%;
+    overflow-x: auto;
+}
+.row {
+    white-space: nowrap;
+}
+.column {
+    display: inline-block;
+    width: 15%;
+    padding: 10px;
+    vertical-align: top;
+}
