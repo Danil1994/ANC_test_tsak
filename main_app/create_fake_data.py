@@ -9,38 +9,39 @@ django.setup()
 
 from main_app.models import Employee
 
-fake = Faker()
 
-# create top menager without boss
-top_management = [Employee.objects.create(
-    first_name=fake.first_name(),
-    last_name=fake.last_name(),
-    position=fake.job(),
-    hire_date=fake.date_this_decade(),
-    email=fake.email(),
-    boss=None
-) for _ in range(10)]
-print('create all managers')
+def generate_fake_employees():
+    fake = Faker()
 
-# create other levels with depends on counts of boss and subordinate
-for i in range(6):
-    for _ in range(2 ** i): # for 50K change 2 to 10
-        boss = random.choice(top_management) if i > 0 else None
-        employee = Employee.objects.create(
+    # Создаем топ-менеджмент (1 уровень)
+    for _ in range(10):  # Для примера создаем 10 топ-менеджеров
+        boss = Employee.objects.create(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
             position=fake.job(),
-            hire_date=fake.date_this_decade(),
-            email=fake.email(),
-            boss=boss
+            boss=None,
+            hire_date=fake.date_between(start_date='-5y', end_date='today'),
+            email=fake.email()
         )
-        if i < 5:  # limiting count of subordinate, only for high level
-            for _ in range(random.randint(1, 10)):
-                subordinate = Employee.objects.create(
-                    first_name=fake.first_name(),
-                    last_name=fake.last_name(),
-                    position=fake.job(),
-                    hire_date=fake.date_this_decade(),
-                    email=fake.email(),
-                    boss=employee
-                )
+        create_hierarchy(boss, fake, level=2, max_level=7)
+
+
+def create_hierarchy(parent, fake, level, max_level):
+    if level > max_level:
+        return
+
+    # Создаем подчиненных для текущего руководителя (parent)
+    for _ in range(3):  # Для примера создаем 10 подчиненных на каждом уровне
+        subordinate = Employee.objects.create(
+            first_name=fake.first_name(),
+            last_name=fake.last_name(),
+            position=fake.job(),
+            boss=parent,
+            hire_date=fake.date_between(start_date='-5y', end_date='today'),
+            email=fake.email()
+        )
+        create_hierarchy(subordinate, fake, level + 1, max_level)
+
+
+if __name__ == '__main__':
+    generate_fake_employees()

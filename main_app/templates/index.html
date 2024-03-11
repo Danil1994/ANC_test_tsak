@@ -5,7 +5,7 @@
     <div class="row">
         {% for manager in top_management %}
         <div class="column">
-            <h2>{{ manager.first_name }} {{ manager.last_name }}</h2>
+            <h2>{{ manager }} </h2>
             <ul>
                 {% for subordinate in manager.subordinates.all %}
                 <li>{{ subordinate.first_name }} {{ subordinate.last_name }}</li>
