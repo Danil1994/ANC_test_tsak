@@ -4,17 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Top Management</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <script src="{% static 'js/main.js' %}"></script>
 
 </head>
 <body>
-<h3><p><a href=""> </a></p>
-    <p><a href="{% url 'index' %}">main </a></p>
+<h3><p><a href="{% url 'index' %}"> Main </a></p>
+    <p><a href="{% url 'top_management' %}">Top management </a></p>
     <p><a href="{% url 'employee_list' %}">Employees list</a></p></h3>
+
+<p>{% if user.is_authenticated %}
+     <li>User: {{ user.get_username }}</li>
+     <li><a href="{% url 'logout'%}?next={{request.path}}">Logout</a></li>
+   {% else %}
+     <li><a href="{% url 'login'%}?next={{request.path}}">Login</a></li>
+   {% endif %}</p>
+
 {% block content %}
+
 {% endblock %}
+
 {% block pagination %}
 {% if is_paginated %}
 <div class="pagination">

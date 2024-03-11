@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Employee Details</h1>
+
+<table>
+    <tr>
+        <th>Attribute</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>First Name</td>
+        <td>{{ employee.first_name }}</td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td>{{ employee.last_name }}</td>
+    </tr>
+    <tr>
+        <td>Middle Name</td>
+        <td>{{ employee.middle_name|default:"Not provided" }}</td>
+    </tr>
+    <tr>
+        <td>Position</td>
+        <td>{{ employee.position }}</td>
+    </tr>
+    <tr>
+        <td>Hire Date</td>
+        <td>{{ employee.hire_date }}</td>
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{ employee.email }}</td>
+    </tr>
+    <tr>
+        <td>Boss</td>
+        <td>{{ employee.get_boss }}</td>
+    </tr>
+</table>
+
+<h2>Subordinates</h2>
+<ul>
+    {% for subordinate in employee.subordinates %}
+        <li>{{ subordinate.full_name }}</li>
+    {% empty %}
+        <li>No subordinates</li>
+    {% endfor %}
+</ul>
+
+<a href="{% url 'employee_update' employee.id %}">Update Employee</a>
+<a href="{% url 'employee_delete' employee.id %}">Delete Employee</a>
+
+{% endblock %}

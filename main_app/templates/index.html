@@ -2,17 +2,13 @@
 
 {% block content %}
 <div class="container">
-    <div class="row">
-        {% for manager in top_management %}
-        <div class="column">
-            <h2>{{ manager }} </h2>
-            <ul>
-                {% for subordinate in manager.subordinates.all %}
-                <li>{{ subordinate.first_name }} {{ subordinate.last_name }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        {% endfor %}
-    </div>
+    <h1>Welcome to Personnel Management</h1>
+    <p>Here you will find a simple and convenient way to manage our team of employees. Our application is designed to
+        make personnel accounting easier and more efficient.</p>
+    <p>Simply navigate through the hierarchy tree to see each employee in the context of their department. We've done
+        our best to make it easy for you to find and manage the information you need about each employee.</p>
+    <p>We provide you with the ability to sort and search employees according to various criteria for your convenience.
+        You can also easily view a list of all employees with their basic information.</p>
+    <p>Join us and together we will make personnel management easier and more transparent!</p>
 </div>
 {% endblock %}
