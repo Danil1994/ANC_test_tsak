@@ -1,19 +1,53 @@
-Test task for ANC company.
+# Test Task for ANC Company
 
-INSTALL
+# Installation
 
-1.Clone repo:
---Clone with SSH git clone https://github.com/Danil1994/Djangogramm.git
---Clone with HTTPS git clone git@github.com:Danil1994/Djangogramm.git
+1. Clone the repository:
 
-2.Go to your project folder: path/to/the/anc_test_task.
+Clone with SSH: `https://github.com/Danil1994/ANC_test_tsak.git`
+Clone with HTTPS: `git@github.com:Danil1994/ANC_test_tsak.git`
 
-3.Load your .env file like .env.example. And provide all the required information (passwords, secret keys etc).
+2. Navigate to your project folder: `path/to/the/anc_test_task`.
 
-4.Activate your virtual env.
+3. Load your environment variables:
 
-5.Install requirements.txt run: pip install -r requirements.txt.
+4. Create a .env file based on .env.example.
+5. Provide all the required information such as passwords, secret keys, etc.
+6. Activate your virtual environment.
 
-In this project using SQLit if you want use other BD please write your BD configurations in setting.py file
+7. Install requirements:
+   Run: pip install -r requirements.txt.
 
-Make migrate:  python manage.py migrate.
+8. Database configuration:
+   By default, this project uses SQLite.
+   If you want to use another database, configure your database settings in settings.py.
+9. Run migrations : python manage.py migrate.
+
+## Run
+
+1. Run server: `python manage.py runserver`
+2. Go to link `http://localhost:8000` in your browser.
+
+# Usage
+
+This web application helps you manage your staff information effectively.
+
+* Authentication:
+
+Before accessing the main features, users must either log in or sign up.
+
+* Main Page:
+  The main page provides a brief introduction to the web application.
+
+* Top Management:
+  Displays a hierarchical tree structure of your employees.
+  Top-level managers are shown first, followed by their subordinates.
+  Clicking on an employee's name reveals their subordinates.
+* Employee List:
+  Shows comprehensive information about all employees, including first name, last name, manager, email, etc.
+  Allows sorting the table by clicking on column headers.
+  Provides the option to create a new employee.
+
+* Employee Details(click on the employee in the list):
+  Shows detailed information about a specific employee.
+  Allows updating or deleting employee information.
