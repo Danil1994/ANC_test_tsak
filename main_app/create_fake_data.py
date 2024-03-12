@@ -30,7 +30,7 @@ def create_hierarchy(parent, fake, level, max_level):
         return
 
     # Создаем подчиненных для текущего руководителя (parent)
-    for _ in range(5):  # Для примера создаем 10 подчиненных на каждом уровне
+    for _ in range(10):  # Для примера создаем 10 подчиненных на каждом уровне
         subordinate = Employee.objects.create(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
@@ -41,6 +41,6 @@ def create_hierarchy(parent, fake, level, max_level):
         )
         create_hierarchy(subordinate, fake, level + 1, max_level)
 
-
+0
 if __name__ == '__main__':
     generate_fake_employees()

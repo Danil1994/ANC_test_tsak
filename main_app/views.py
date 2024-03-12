@@ -45,7 +45,7 @@ class EmployeeListView(LoginRequiredMixin, ListView):
     template_name = 'main_app/employee_list.html'
     context_object_name = 'employees'
     ordering = 'last_name'
-    paginate_by = 50
+    paginate_by = 500
 
     def get_queryset(self):
         queryset = super().get_queryset()
