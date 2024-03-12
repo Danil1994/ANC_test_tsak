@@ -21,9 +21,7 @@ Clone with HTTPS: `git@github.com:Danil1994/ANC_test_tsak.git`
 8. Database configuration:
    By default, this project uses SQLite.
    If you want to use another database, configure your database settings in settings.py.
-   Run migrations:
-
-9. Run: python manage.py migrate.
+9. Run migrations : python manage.py migrate.
 
 ## Run
 
