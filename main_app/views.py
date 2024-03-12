@@ -1,12 +1,13 @@
-from django.db.models import Q
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Q
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.utils.timezone import now
-from django.views.generic import ListView, DetailView, DeleteView
-from django.shortcuts import render
+from django.views.generic import DeleteView, DetailView, ListView
 from django.views.generic.edit import CreateView, UpdateView
 
 from main_app.models import Employee
+from main_app.forms import RegistrationForm
 
 
 def index(request):
@@ -65,6 +66,7 @@ class EmployeeListView(LoginRequiredMixin, ListView):
 
         return queryset
 
+
 class EmployeeDetailView(LoginRequiredMixin, DetailView):
     model = Employee
 
@@ -92,3 +94,13 @@ class EmployeeUpdateView(LoginRequiredMixin, UpdateView):
 class EmployeeDeleteView(LoginRequiredMixin, DeleteView):
     model = Employee
     success_url = reverse_lazy("employee_list")
+
+class SignUpView(CreateView):
+    form_class = RegistrationForm
+    success_url = reverse_lazy("login")
+    template_name = "registration/signup.html"
+
+    def form_invalid(self, form):
+        error_messages = form.errors
+        return self.render_to_response(self.get_context_data(form=form, error_messages=error_messages))
+

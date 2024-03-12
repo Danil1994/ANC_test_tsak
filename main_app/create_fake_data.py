@@ -1,7 +1,6 @@
 import os
-import django
-import random
 
+import django
 from faker import Faker
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'anc_test_task.settings')
@@ -31,7 +30,7 @@ def create_hierarchy(parent, fake, level, max_level):
         return
 
     # Создаем подчиненных для текущего руководителя (parent)
-    for _ in range(3):  # Для примера создаем 10 подчиненных на каждом уровне
+    for _ in range(5):  # Для примера создаем 10 подчиненных на каждом уровне
         subordinate = Employee.objects.create(
             first_name=fake.first_name(),
             last_name=fake.last_name(),
