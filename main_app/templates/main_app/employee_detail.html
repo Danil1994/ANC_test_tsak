@@ -2,53 +2,63 @@
 
 {% block content %}
 
-<h1>Employee Details</h1>
+<div class="container">
+    <h1 class="mt-5 mb-4">Employee Details</h1>
 
-<table>
-    <tr>
-        <th>Attribute</th>
-        <th>Value</th>
-    </tr>
-    <tr>
-        <td>First Name</td>
-        <td>{{ employee.first_name }}</td>
-    </tr>
-    <tr>
-        <td>Last Name</td>
-        <td>{{ employee.last_name }}</td>
-    </tr>
-    <tr>
-        <td>Middle Name</td>
-        <td>{{ employee.middle_name|default:"Not provided" }}</td>
-    </tr>
-    <tr>
-        <td>Position</td>
-        <td>{{ employee.position }}</td>
-    </tr>
-    <tr>
-        <td>Hire Date</td>
-        <td>{{ employee.hire_date }}</td>
-    </tr>
-    <tr>
-        <td>Email</td>
-        <td>{{ employee.email }}</td>
-    </tr>
-    <tr>
-        <td>Boss</td>
-        <td>{{ employee.get_boss }}</td>
-    </tr>
-</table>
+    <div class="row">
+        <div class="col-md-6">
+            <table class="table table-bordered">
+                <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>First Name</td>
+                    <td>{{ employee.first_name }}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>{{ employee.last_name }}</td>
+                </tr>
+                <tr>
+                    <td>Middle Name</td>
+                    <td>{{ employee.middle_name|default:"Not provided" }}</td>
+                </tr>
+                <tr>
+                    <td>Position</td>
+                    <td>{{ employee.position }}</td>
+                </tr>
+                <tr>
+                    <td>Hire Date</td>
+                    <td>{{ employee.hire_date }}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>{{ employee.email }}</td>
+                </tr>
+                <tr>
+                    <td>Boss</td>
+                    <td>{{ employee.get_boss }}</td>
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h2 class="mb-3">Subordinates</h2>
+            <ul class="list-group">
+                {% for subordinate in employee.subordinates %}
+                    <li class="list-group-item"><a href="{% url 'employee_detail' subordinate.id %}">
+                        {{ subordinate.full_name }}</a></li>
+                {% empty %}
+                    <li class="list-group-item">No subordinates</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 
-<h2>Subordinates</h2>
-<ul>
-    {% for subordinate in employee.subordinates %}
-        <li>{{ subordinate.full_name }}</li>
-    {% empty %}
-        <li>No subordinates</li>
-    {% endfor %}
-</ul>
-
-<a href="{% url 'employee_update' employee.id %}">Update Employee</a>
-<a href="{% url 'employee_delete' employee.id %}">Delete Employee</a>
+    <div class="mt-4">
+        <a href="{% url 'employee_update' employee.id %}" class="btn btn-primary mr-3">Update Employee</a>
+        <a href="{% url 'employee_delete' employee.id %}" class="btn btn-danger">Delete Employee</a>
+    </div>
+</div>
 
 {% endblock %}

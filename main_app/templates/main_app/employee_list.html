@@ -1,39 +1,42 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Employee List</h1>
-{% if user.is_authenticated %}
-<p><a href="{% url 'employee_create' %}">Create employee</a></p>
-{% endif %}
-<form method="GET" action="{% url 'employee_list' %}">
-    <input type="text" name="q" placeholder="Search...">
-    <button type="submit">Search</button>
-</form>
-<table>
-    <thead>
-    <tr>
-        <th><a href="#" onclick="toggleOrder('last_name')">Last Name</a></th>
-        <th><a href="#" onclick="toggleOrder('first_name')">First Name</a></th>
-        <th><a href="#" onclick="toggleOrder('middle_name')">Middle Name</a></th>
-        <th><a href="#" onclick="toggleOrder('position')">Position</a></th>
-        <th><a href="#" onclick="toggleOrder('hire_date')">Hire Date</a></th>
-        <th><a href="#" onclick="toggleOrder('email')">Email</a></th>
-        <th><a href="#" onclick="toggleOrder('boss')">Boss</a></th>
-    </tr>
-    </thead>
-    <tbody>
-    {% for employee in employees %}
-    <tr>
-        <td><a href="{% url 'employee_detail' employee.id %}">{{ employee.last_name }}</a></td>
-
-        <td>{{ employee.first_name }}</td>
-        <td>{{ employee.middle_name }}</td>
-        <td>{{ employee.position }}</td>
-        <td>{{ employee.hire_date }}</td>
-        <td>{{ employee.email }}</td>
-        <td>{{ employee.boss }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+<div class="container">
+    <h1 class="mb-4">Employee List</h1>
+    {% if user.is_authenticated %}
+    <p><a href="{% url 'employee_create' %}" class="btn btn-primary mb-3">Create Employee</a></p>
+    {% endif %}
+    <form method="GET" action="{% url 'employee_list' %}" class="mb-3">
+        <div class="input-group">
+            <input type="text" class="form-control" name="q" placeholder="Search...">
+            <button type="submit" class="btn btn-outline-secondary">Search</button>
+        </div>
+    </form>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col"><a href="#" onclick="toggleOrder('last_name')">Last Name</a></th>
+                <th scope="col"><a href="#" onclick="toggleOrder('first_name')">First Name</a></th>
+                <th scope="col"><a href="#" onclick="toggleOrder('middle_name')">Middle Name</a></th>
+                <th scope="col"><a href="#" onclick="toggleOrder('position')">Position</a></th>
+                <th scope="col"><a href="#" onclick="toggleOrder('hire_date')">Hire Date</a></th>
+                <th scope="col"><a href="#" onclick="toggleOrder('email')">Email</a></th>
+                <th scope="col"><a href="#" onclick="toggleOrder('boss')">Boss</a></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for employee in employees %}
+            <tr>
+                <td><a href="{% url 'employee_detail' employee.id %}">{{ employee.last_name }}</a></td>
+                <td>{{ employee.first_name }}</td>
+                <td>{{ employee.middle_name }}</td>
+                <td>{{ employee.position }}</td>
+                <td>{{ employee.hire_date }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.boss }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}

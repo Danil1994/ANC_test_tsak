@@ -1,21 +1,21 @@
- $(document).on('click', '.subordinates-link', function() {
-        console.log('Срабатывает скрипт');
-        // Получаем идентификатор сотрудника из атрибута data-employee-id
-        var employeeId = $(this).data('employee-id');
+$(document).on('click', '.subordinates-link', function() {
+    // Получаем идентификатор сотрудника из атрибута data-employee-id
+    var employeeId = $(this).data('employee-id');
 
-        // Отправляем AJAX-запрос на сервер для получения подчиненных сотрудников
-        $.ajax({
-            url: '/main_app/get_subordinates/' + employeeId + '/',  // Указываем URL с идентификатором сотрудника
-            method: 'GET',
-            success: function(response) {
-                // Обновляем интерфейс, добавляя подчиненных к выбранному сотруднику
-                $(this).parent().append(response);  // Вставляем ответ после выбранного сотрудника
-            }.bind(this),
-            error: function(xhr, errmsg, err) {
-                console.log(xhr.status + ": " + xhr.responseText); // Вывести сообщение об ошибке в консоль
-            }
-        });
+    // Отправляем AJAX-запрос на сервер для получения подчиненных сотрудников
+    $.ajax({
+        url: '/main_app/get_subordinates/' + employeeId + '/',  // Указываем URL с идентификатором сотрудника
+        method: 'GET',
+        success: function(response) {
+            // Обновляем интерфейс, добавляя подчиненных к выбранному сотруднику
+            $(this).parent().append(response);  // Вставляем ответ после выбранного сотрудника
+        }.bind(this),
+        error: function(xhr, errmsg, err) {
+            console.log(xhr.status + ": " + xhr.responseText); // Вывести сообщение об ошибке в консоль
+        }
     });
+});
+
 
 function toggleOrder(field) {
     var currentOrder = getParameterByName('order_by');

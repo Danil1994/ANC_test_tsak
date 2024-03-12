@@ -5,7 +5,6 @@ from django.utils.timezone import now
 from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
-from django.http import JsonResponse
 
 from main_app.models import Employee
 

@@ -1,23 +1,24 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Top management</h1>
+<h1>Top Management</h1>
 <div class="container">
     <div class="row">
         {% for manager in top_management %}
-        <div class="column">
-            <h2>{{ manager }} </h2>
-            <ul>
+        <div class="col-md-4 col-sm-6">
+            <h2 class="text-wrap">{{ manager }}</h2>
+            <ul class="list-group">
                 {% for subordinate in manager.subordinates.all %}
-                <li><a href="#" class="subordinates-link"
+                <li class="list-group-item">
+                    <a href="#" class="subordinates-link"
                        data-employee-id="{{ subordinate.id }}">
-                    {{ subordinate.first_name }} {{ subordinate.last_name }}</a></li>
+                        {{ subordinate.first_name }} {{ subordinate.last_name }}
+                    </a>
+                </li>
                 {% endfor %}
             </ul>
         </div>
         {% endfor %}
     </div>
 </div>
-
-
 {% endblock %}
