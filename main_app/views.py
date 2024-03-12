@@ -5,12 +5,24 @@ from django.utils.timezone import now
 from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import render
 from django.views.generic.edit import CreateView, UpdateView
+from django.http import JsonResponse
 
 from main_app.models import Employee
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+def get_subordinates(request, pk):
+    employee = Employee.objects.get(pk=pk)
+    subordinates = employee.subordinates
+
+    return render(
+        request,
+        'main_app/subordinates.html',
+        context={'subordinates': subordinates}
+    )
 
 
 class TopManagementListView(LoginRequiredMixin, ListView):
@@ -43,7 +55,6 @@ class EmployeeListView(LoginRequiredMixin, ListView):
             queryset = queryset.order_by(order_by)
         search_query = self.request.GET.get('q')
 
-
         if search_query:
             queryset = queryset.filter(
                 Q(first_name__icontains=search_query) |
@@ -58,6 +69,7 @@ class EmployeeListView(LoginRequiredMixin, ListView):
 
 class EmployeeDetailView(LoginRequiredMixin, DetailView):
     model = Employee
+
 
 class EmployeeCreateView(LoginRequiredMixin, CreateView):
     model = Employee

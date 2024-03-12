@@ -1,0 +1,8 @@
+{% block content %}
+<ul>
+    {% for subordinate in subordinates %}
+    <li><a href="#" class="subordinates-link" data-employee-id="{{ subordinate.id }}">
+        {{ subordinate.first_name }} {{ subordinate.last_name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -9,11 +9,15 @@
             <h2>{{ manager }} </h2>
             <ul>
                 {% for subordinate in manager.subordinates.all %}
-                <li>{{ subordinate.first_name }} {{ subordinate.last_name }}</li>
+                <li><a href="#" class="subordinates-link"
+                       data-employee-id="{{ subordinate.id }}">
+                    {{ subordinate.first_name }} {{ subordinate.last_name }}</a></li>
                 {% endfor %}
             </ul>
         </div>
         {% endfor %}
     </div>
 </div>
+
+
 {% endblock %}
