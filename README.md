@@ -4,8 +4,8 @@
 
 1. Clone the repository:
 
-Clone with SSH: `git clone https://github.com/Danil1994/Djangogramm.git`
-Clone with HTTPS: `git clone git@github.com:Danil1994/Djangogramm.git`
+Clone with SSH: `https://github.com/Danil1994/ANC_test_tsak.git`
+Clone with HTTPS: `git@github.com:Danil1994/ANC_test_tsak.git`
 
 2. Navigate to your project folder: `path/to/the/anc_test_task`.
 
