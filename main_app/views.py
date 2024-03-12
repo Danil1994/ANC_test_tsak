@@ -65,7 +65,6 @@ class EmployeeListView(LoginRequiredMixin, ListView):
 
         return queryset
 
-
 class EmployeeDetailView(LoginRequiredMixin, DetailView):
     model = Employee
 

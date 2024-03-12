@@ -4,14 +4,14 @@ $(document).on('click', '.subordinates-link', function() {
 
     // Отправляем AJAX-запрос на сервер для получения подчиненных сотрудников
     $.ajax({
-        url: '/main_app/get_subordinates/' + employeeId + '/',  // Указываем URL с идентификатором сотрудника
+        url: '/main_app/get_subordinates/' + employeeId + '/',
         method: 'GET',
         success: function(response) {
             // Обновляем интерфейс, добавляя подчиненных к выбранному сотруднику
             $(this).parent().append(response);  // Вставляем ответ после выбранного сотрудника
         }.bind(this),
         error: function(xhr, errmsg, err) {
-            console.log(xhr.status + ": " + xhr.responseText); // Вывести сообщение об ошибке в консоль
+            console.log(xhr.status + ": " + xhr.responseText); // сообщение об ошибке в консоль
         }
     });
 });
